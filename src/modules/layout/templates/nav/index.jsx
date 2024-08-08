@@ -32,7 +32,7 @@ export default async function Nav() {
               </LocalizedClientLink>
             </div>
             <div className="hidden md:flex items-center h-full mx-auto w-[60%] justify-center">
-              <SearchModal />
+              {/* <SearchModal /> */}
             </div>
             <div className="flex items-center gap-x-6 h-full justify-end">
               <div className="hidden small:flex flex-col items-center justify-center gap-x-6 h-full">
@@ -51,7 +51,7 @@ export default async function Nav() {
                   Account
                 </LocalizedClientLink>
               </div>
-              {process.env.NEXT_PUBLIC_FEATURE_SEARCH_ENABLED && (
+              {/* {process.env.NEXT_PUBLIC_FEATURE_SEARCH_ENABLED && (
                     <LocalizedClientLink
                       className="hover:text-ui-fg-base md:hidden flex flex-col justify-center items-center"
                       href="/search"
@@ -61,7 +61,7 @@ export default async function Nav() {
                      <CiSearch size={24} />
                       Search
                     </LocalizedClientLink>
-                  )}
+                  )} */}
               <Suspense
                 fallback={
                   <LocalizedClientLink
