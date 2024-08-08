@@ -6,6 +6,7 @@ import Thumbnail from "../thumbnail"
 import PreviewPrice from "./price"
 import { getProductsById } from "@lib/data/products"
 import { HttpTypes } from "@medusajs/types"
+import InteractiveLink from "@modules/common/components/interactive-link"
 
 export default async function ProductPreview({
   product,
@@ -30,23 +31,43 @@ export default async function ProductPreview({
   })
 
   return (
-    <LocalizedClientLink href={`/products/${product.handle}`} className="group">
-      <div data-testid="product-wrapper">
+    <div className="w-72 bg-white shadow-md border rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+      <LocalizedClientLink
+        href={`/products/${product.handle}`}
+        className="group"
+      >
+        {/* <div data-testid="product-wrapper"> */}
         <Thumbnail
           thumbnail={product.thumbnail}
           images={product.images}
           size="full"
           isFeatured={isFeatured}
         />
-        <div className="flex txt-compact-medium mt-4 justify-between">
-          <Text className="text-ui-fg-subtle" data-testid="product-title">
+      </LocalizedClientLink>
+
+      <div className="px-4 py-3 w-72">
+        <span className="text-gray-400 mr-3 capitalize text-xs">brand</span>
+        <LocalizedClientLink
+          href={`/products/${product.handle}`}
+          className="group"
+        >
+          <Text
+            className="text-sm font-bold text-black truncate block capitalize"
+            data-testid="product-title"
+          >
             {product.title}
           </Text>
-          <div className="flex items-center gap-x-2">
-            {cheapestPrice && <PreviewPrice price={cheapestPrice} />}
-          </div>
+        </LocalizedClientLink>
+        <div className="flex jusitfy-center gap-x-2">
+          {cheapestPrice && <PreviewPrice price={cheapestPrice} />}
         </div>
       </div>
-    </LocalizedClientLink>
+      <div className="px-2 pb-3 mt-2">
+        <InteractiveLink href={`/products/${product.handle}`}>
+          Quick View
+        </InteractiveLink>
+      </div>
+      {/* </div> */}
+    </div>
   )
 }

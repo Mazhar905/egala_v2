@@ -23,7 +23,7 @@ export default async function StorePage({ searchParams, params }: Params) {
 
   return (
     <StoreTemplate
-      sortBy={sortBy}
+      sortBy={sortBy || "created_at"}
       page={page}
       countryCode={params.countryCode}
     />

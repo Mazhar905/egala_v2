@@ -1,12 +1,8 @@
 import { notFound } from "next/navigation"
 import { Suspense } from "react"
-
-import InteractiveLink from "@modules/common/components/interactive-link"
 import SkeletonProductGrid from "@modules/skeletons/templates/skeleton-product-grid"
-import RefinementList from "@modules/store/components/refinement-list"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 import PaginatedProducts from "@modules/store/templates/paginated-products"
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { HttpTypes } from "@medusajs/types"
 import ArchiveHeader from "@modules/store/components/archive-header"
 
@@ -15,11 +11,13 @@ export default function CategoryTemplate({
   sortBy,
   page,
   countryCode,
+  limit,
 }: {
   categories: HttpTypes.StoreProductCategory[]
   sortBy?: SortOptions
   page?: string
   countryCode: string
+  limit?: number
 }) {
   const pageNumber = page ? parseInt(page) : 1
   const sort = sortBy || "created_at"
@@ -34,13 +32,13 @@ export default function CategoryTemplate({
       className="flex flex-col small:items-start py-6 content-container"
       data-testid="category-container"
     >
-            {/* {sortBy && ( */}
+      {sortBy && (
         <ArchiveHeader
           title={category.name}
           sortBy={sortBy || "created_at"}
           data-testid="sort-by-container"
         />
-        {/* )} */}
+      )}
       {/* <RefinementList sortBy={sort} data-testid="sort-by-container" />
       <div className="w-full">
         <div className="flex flex-row mb-8 text-2xl-semi gap-4">
@@ -77,14 +75,15 @@ export default function CategoryTemplate({
             </ul>
           </div>
         )} */}
-        <Suspense fallback={<SkeletonProductGrid />}>
-          <PaginatedProducts
-            sortBy={sort}
-            page={pageNumber}
-            categoryId={category.id}
-            countryCode={countryCode}
-          />
-        </Suspense>
-      </div>
+      <Suspense fallback={<SkeletonProductGrid />}>
+        <PaginatedProducts
+          sortBy={sort}
+          page={pageNumber}
+          categoryId={category.id}
+          countryCode={countryCode}
+          limit={limit}
+        />
+      </Suspense>
+    </div>
   )
 }

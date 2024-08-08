@@ -5,6 +5,7 @@ import RefinementList from "@modules/store/components/refinement-list"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 
 import PaginatedProducts from "./paginated-products"
+import ArchiveHeader from "../components/archive-header"
 
 const StoreTemplate = ({
   sortBy,
@@ -20,14 +21,16 @@ const StoreTemplate = ({
 
   return (
     <div
-      className="flex flex-col small:flex-row small:items-start py-6 content-container"
+      className="flex flex-col small:items-start py-6 content-container"
       data-testid="category-container"
     >
-      <RefinementList sortBy={sort} />
-      <div className="w-full">
-        <div className="mb-8 text-2xl-semi">
-          <h1 data-testid="store-page-title">All products</h1>
-        </div>
+      {sortBy && (
+        <ArchiveHeader
+          title={"All Products"}
+          sortBy={sortBy || "created_at"}
+          data-testid="sort-by-container"
+        />
+      )}
         <Suspense fallback={<SkeletonProductGrid />}>
           <PaginatedProducts
             sortBy={sort}
@@ -35,7 +38,6 @@ const StoreTemplate = ({
             countryCode={countryCode}
           />
         </Suspense>
-      </div>
     </div>
   )
 }

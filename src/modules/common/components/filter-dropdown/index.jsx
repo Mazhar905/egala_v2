@@ -13,7 +13,7 @@ const FilterDropdown = ({
       <Text className="txt-compact-small-plus text-ui-fg-muted w-[30%]">{title}</Text>
       <Select className="w-[50%]">
         <Select.Trigger>
-          <Select.Value placeholder="Select a currency" />
+          <Select.Value placeholder="Select a filter" />
         </Select.Trigger>
 
         <Select.Content>

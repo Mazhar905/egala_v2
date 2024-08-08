@@ -21,6 +21,7 @@ export default async function PaginatedProducts({
   categoryId,
   productsIds,
   countryCode,
+  limit,
 }: {
   sortBy?: SortOptions
   page: number
@@ -28,6 +29,7 @@ export default async function PaginatedProducts({
   categoryId?: string
   productsIds?: string[]
   countryCode: string
+  limit?: number
 }) {
   const queryParams: PaginatedProductsParams = {
     limit: 12,

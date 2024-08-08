@@ -81,7 +81,7 @@ export default async function CollectionPage({ params, searchParams }: Props) {
     <CollectionTemplate
       collection={collection}
       page={page}
-      sortBy={sortBy}
+      sortBy={ sortBy || "created_at"}
       countryCode={params.countryCode}
     />
   )

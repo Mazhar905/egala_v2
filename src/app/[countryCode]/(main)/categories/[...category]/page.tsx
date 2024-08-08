@@ -82,7 +82,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   return (
     <CategoryTemplate
       categories={product_categories}
-      sortBy={sortBy}
+      sortBy={sortBy || "created_at"}
       page={page}
       countryCode={params.countryCode}
     />
