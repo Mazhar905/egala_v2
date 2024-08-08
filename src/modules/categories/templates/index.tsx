@@ -8,6 +8,7 @@ import { SortOptions } from "@modules/store/components/refinement-list/sort-prod
 import PaginatedProducts from "@modules/store/templates/paginated-products"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { HttpTypes } from "@medusajs/types"
+import ArchiveHeader from "@modules/store/components/archive-header"
 
 export default function CategoryTemplate({
   categories,
@@ -30,10 +31,17 @@ export default function CategoryTemplate({
 
   return (
     <div
-      className="flex flex-col small:flex-row small:items-start py-6 content-container"
+      className="flex flex-col small:items-start py-6 content-container"
       data-testid="category-container"
     >
-      <RefinementList sortBy={sort} data-testid="sort-by-container" />
+            {/* {sortBy && ( */}
+        <ArchiveHeader
+          title={category.name}
+          sortBy={sortBy || "created_at"}
+          data-testid="sort-by-container"
+        />
+        {/* )} */}
+      {/* <RefinementList sortBy={sort} data-testid="sort-by-container" />
       <div className="w-full">
         <div className="flex flex-row mb-8 text-2xl-semi gap-4">
           {parents &&
@@ -68,7 +76,7 @@ export default function CategoryTemplate({
               ))}
             </ul>
           </div>
-        )}
+        )} */}
         <Suspense fallback={<SkeletonProductGrid />}>
           <PaginatedProducts
             sortBy={sort}
@@ -78,6 +86,5 @@ export default function CategoryTemplate({
           />
         </Suspense>
       </div>
-    </div>
   )
 }

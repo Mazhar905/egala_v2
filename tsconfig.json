@@ -26,7 +26,7 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/modules/layout/templates/nav/index.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/modules/layout/templates/nav/index.jsx", "src/modules/common/components/filter-dropdown/index.jsx"],
   "exclude": [
     "node_modules",
     ".next",
